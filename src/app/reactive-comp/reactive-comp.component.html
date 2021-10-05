@@ -1,0 +1,29 @@
+<ng-container *mobx="{name: 'reactive-comp'}">
+  <p *ngIf="showCounterFromService">
+    Counter from service: {{ counterService.counter }}
+  </p>
+  <p *ngIf="!showCounterFromService">
+    Local component counter: {{ counter }}
+  </p>
+  <p>
+    <app-non-reactive-onpush-comp
+      name="Non-reactive OnPush component and ordinary getter"
+      [obj]="ordinaryGetterThatReturnsObject">
+    </app-non-reactive-onpush-comp>
+  </p>
+  <p>
+    <app-non-reactive-onpush-comp
+      name="Non-reactive OnPush component and computed getter"
+      [obj]="computedGetterThatReturnsObject">
+    </app-non-reactive-onpush-comp>
+  </p>
+  <p>
+    <button type="button" (click)="incCounter()">Inc component counter</button>
+    <button type="button" (click)="toggleCounterType()">
+      {{ showCounterFromService ? 'Show service counter' : 'Show component counter' }}
+    </button>
+    <button type="button" (click)="counterService.stopCounter()">Stop service counter</button>
+    <button type="button" (click)="detectChanges()">Run `cd.detectChanges()`</button>
+  </p>
+</ng-container>
+
